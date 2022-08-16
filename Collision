@@ -1,0 +1,13 @@
+local sword = game.Players.LocalPlayer.Character:FindFirstChildOfClass("Tool") or game.Players.LocalPlayer.Backpack:FindFirstChildOfClass("Tool")
+for i,v in pairs(game.Players.LocalPlayer.Character:GetChildren()) do
+	if v:IsA("Part") then
+		for l,m in next, getconnections(v:GetPropertyChangedSignal("CanCollide")) do
+			m:Disable()
+		end
+		v.CanCollide = false
+		for l,m in next, getconnections(sword.Handle:GetPropertyChangedSignal("CanCollide")) do
+			m:Disable()
+		end
+		sword.Handle.CanCollide = false
+	end
+end
